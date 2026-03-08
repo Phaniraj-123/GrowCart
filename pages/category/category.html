@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroFarm</title>
+    <link rel="stylesheet" href="/css/content.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<!-- category.html -->
+<body class="category-page">
+<body>
+
+    <!-- Navbar -->
+    <div class="containers" id="navbar">
+        <nav class="navbar-first">
+            <li>Herbs</li>
+            <li>Seeds</li>
+            <li>Pestisides</li>
+            <li>Organic</li>
+            <li>Equipment</li>
+            <li>Crop Nutritients</li>
+            <li>Crop protection</li>
+        </nav><br>
+        <hr>
+        <section class="nav-bar">
+            <a href="/public/agri.html" target="_blank">
+                <p>Agro<span>Farm</span></p>
+            </a>
+            <form class="nav-searchbar" id="searching" action="/search" method="GET">
+                <input id="search" type="text" placeholder="search seeds,Pestisides,Organic" name="query">
+                <button type="button" id="searchBtn"><i class="fa fa-search fa-2xl"></i></button>
+                <div id="suggestions" class="suggestions"></div>
+            </form>
+            <nav id="cart-user-login">
+                <i id="cartCount" class="fa-solid fa-basket-shopping fa-2xl" onclick="toggleCart()">
+                    <span id="counting"></span>
+                </i>
+                <i class="fa-regular fa-circle-user fa-2xl" id="userIcon" onclick="handleUserIcon()" style="cursor:pointer;"></i>
+                <div id="cart-sidebar" class="cart-sidebar">
+                    <div class="cart-header">
+                        <h2>Your Cart</h2>
+                        <button class="closeCart" onclick="toggleCart()">✖</button>
+                    </div>
+                    <div id="cart-items"></div>
+                </div>
+            </nav>
+        </section>
+        <hr>
+    </div>
+
+    <!-- Category Products -->
+    <div style="padding: 24px; margin-top: 190px;">
+        <h2 id="category-title" style="font-family:'Cormorant Garamond',serif; color:#0d3d2b; margin-bottom:20px; font-size:2rem;"></h2>
+        <div class="product-containerP1" id="category-container"></div>
+    </div>
+
+    <!-- Checkout Overlay -->
+    <div id="checkout-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:9999; justify-content:center; align-items:center;">
+        <div id="checkout-modal" style="background:white; border-radius:20px; padding:32px; width:90%; max-width:480px; max-height:80vh; overflow-y:auto; position:relative;">
+            <button onclick="closeCheckout()" style="position:absolute; top:16px; right:16px; background:none; border:none; font-size:1.2rem; cursor:pointer;">✕</button>
+            <div id="checkout-step-1">
+                <h3 style="font-family:'Playfair Display',serif; color:#0d3d2b; margin-bottom:20px;">Delivery Address</h3>
+                <div id="saved-address-section"></div>
+                <div id="checkout-address-form" style="display:none;">
+                    <input type="text" id="co-name" placeholder="Full Name">
+                    <input type="text" id="co-street" placeholder="Street Address">
+                    <input type="text" id="co-apt" placeholder="Apt/Suite (optional)">
+                    <input type="text" id="co-city" placeholder="City">
+                    <input type="text" id="co-state" placeholder="State">
+                    <input type="text" id="co-zip" placeholder="ZIP Code">
+                    <input type="tel" id="co-phone" placeholder="Phone Number">
+                </div>
+                <button onclick="confirmAddress()" class="co-btn">Confirm Address →</button>
+            </div>
+            <div id="checkout-step-2" style="display:none;">
+                <h3 style="font-family:'Playfair Display',serif; color:#0d3d2b; margin-bottom:20px;">Payment Method</h3>
+                <div id="payment-options">
+                    <div class="payment-option" onclick="selectPayment(this, 'cod')">
+                        <i class="fa-solid fa-money-bill-wave"></i>
+                        <span>Cash on Delivery</span>
+                    </div>
+                    <div class="payment-option" onclick="selectPayment(this, 'card')">
+                        <i class="fa-solid fa-credit-card"></i>
+                        <span>Credit / Debit Card</span>
+                    </div>
+                    <div class="payment-option" onclick="selectPayment(this, 'upi')">
+                        <i class="fa-solid fa-mobile-screen"></i>
+                        <span>UPI</span>
+                    </div>
+                    <div class="payment-option" onclick="selectPayment(this, 'netbanking')">
+                        <i class="fa-solid fa-building-columns"></i>
+                        <span>Net Banking</span>
+                    </div>
+                </div>
+                <p id="selected-payment-label" style="color:#178262; font-size:0.85rem; margin:12px 0;"></p>
+                <button onclick="confirmOrder()" class="co-btn">Confirm Order ✓</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Preview Modal -->
+    <div id="previewModal" class="preview-modal">
+        <div class="preview-content">
+            <button class="close-btn">&times;</button>
+            <div class="preview-left">
+                <div class="preview-carousel">
+                    <img id="previewImage" src="" alt="">
+                    <button class="carousel-prev">&#10094;</button>
+                    <button class="carousel-next">&#10095;</button>
+                </div>
+                <div class="preview-thumbnails" id="previewThumbnails"></div>
+            </div>
+            <div class="preview-right">
+                <p class="preview-category" id="previewCategory"></p>
+                <h2 id="previewTitle"></h2>
+                <div class="preview-price-row">
+                    <span class="preview-price" id="previewPrice"></span>
+                </div>
+                <p class="preview-desc" id="previewDesc"></p>
+                <select class="preview-select">
+                    <option value="1L">1L</option>
+                    <option value="500ml">500ml</option>
+                    <option value="250ml">250ml</option>
+                </select>
+                <div class="preview-actions">
+                    <button class="preview-add-btn" id="previewAddBtn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast"></div>
+
+    <script src="../../js/cart.js"></script>
+    <script src="../../js/checkoutModal.js"></script>
+    <script src="../../js/nav.js"></script>
+    <script src="../../products/search.js"></script>
+    <script src="../../products/searchSuggest.js"></script>
+    <script src="../../products/address.js"></script>
+    <script src="../../js/categoryPage.js"></script>
+</body>
+</html>

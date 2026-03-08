@@ -1,0 +1,24 @@
+[
+    {
+        "id": 101011,
+        "name": "seeds",
+        "price": 199,
+        "description": "Insecticide ABC Lorem ipsum dolor sit amet consectetur.",
+        "image": "imageshop/pestisides1.jpg"
+    },
+    {
+        "id": 101012,
+        "name": "fertilizers",
+        "price": 299,
+        "description": "Fertilizer ABC Lorem ipsum dolor sit amet consectetur.",
+        "image": "imageshop/fertilizer1.jpg"
+    },
+    {
+        "id": 101013,
+        "name": "pesticides",
+        "price": 399,
+        "description": "Pesticide ABC Lorem ipsum dolor sit amet consectetur.",
+        "image": "imageshop/pestisides1.jpg"
+    }
+   
+]

@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="shortcut icon" href="/public/images/ChatGPT Image Nov 24, 2025, 08_01_11 PM.png" type="">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/content.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroCart-shopping</title>
+</head>
+<body>
+<!-- toast notification -->
+<div id="toast" style="
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #0d3d2b;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 24px;
+    font-size: 0.9rem;
+    font-family: 'DM Sans', sans-serif;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 9999;
+    pointer-events: none;
+"></div>
+<!-- Checkout Modal -->
+<div id="checkout-overlay"
+    style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:9999; justify-content:center; align-items:center;">
+    <div id="checkout-modal"
+        style="background:white; border-radius:20px; padding:32px; width:90%; max-width:480px; max-height:80vh; overflow-y:auto; position:relative;">
+        <button onclick="closeCheckout()"
+            style="position:absolute; top:16px; right:16px; background:none; border:none; font-size:1.2rem; cursor:pointer;">✕</button>
+        <div id="checkout-step-1">
+            <h3 style="font-family:'Playfair Display',serif; color:#0d3d2b; margin-bottom:20px;">Delivery Address</h3>
+            <div id="saved-address-section"></div>
+            <div id="checkout-address-form" style="display:none;">
+                <input type="text" id="co-name" placeholder="Full Name">
+                <input type="text" id="co-street" placeholder="Street Address">
+                <input type="text" id="co-apt" placeholder="Apt/Suite (optional)">
+                <input type="text" id="co-city" placeholder="City">
+                <input type="text" id="co-state" placeholder="State">
+                <input type="text" id="co-zip" placeholder="ZIP Code">
+                <input type="tel" id="co-phone" placeholder="Phone Number">
+            </div>
+            <button onclick="confirmAddress()" class="co-btn">Confirm Address →</button>
+        </div>
+
+        <div id="checkout-step-2" style="display:none;">
+            <h3 style="font-family:'Playfair Display',serif; color:#0d3d2b; margin-bottom:20px;">Payment Method</h3>
+            <div id="payment-options">
+                <div class="payment-option" onclick="selectPayment(this, 'cod')">
+                    <i class="fa-solid fa-money-bill-wave"></i>
+                    <span>Cash on Delivery</span>
+                </div>
+                <div class="payment-option" onclick="selectPayment(this, 'card')">
+                    <i class="fa-solid fa-credit-card"></i>
+                    <span>Credit / Debit Card</span>
+                </div>
+                <div class="payment-option" onclick="selectPayment(this, 'upi')">
+                    <i class="fa-solid fa-mobile-screen"></i>
+                    <span>UPI</span>
+                </div>
+                <div class="payment-option" onclick="selectPayment(this, 'netbanking')">
+                    <i class="fa-solid fa-building-columns"></i>
+                    <span>Net Banking</span>
+                </div>
+            </div>
+            <p id="selected-payment-label" style="color:#178262; font-size:0.85rem; margin:12px 0;"></p>
+            <button onclick="confirmOrder()" class="co-btn">Confirm Order ✓</button>
+        </div>
+    </div>
+</div>
+
+<!-- Mobile Bottom Nav -->
+<!-- Mobile Bottom Nav -->
+<div class="mobile-bottom-nav">
+    <div class="mobile-nav-items">
+        <div class="mobile-nav-item active" id="mob-home" onclick="switchTab('home')">
+            <i class="fa-solid fa-house"></i>
+            <span>Home</span>
+        </div>
+        <div class="mobile-nav-item" id="mob-search" onclick="switchTab('search')">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <span>Search</span>
+        </div>
+        <div class="mobile-nav-item" id="mob-cart" onclick="switchTab('cart')">
+            <i class="fa-solid fa-basket-shopping"></i>
+            <span>Cart</span>
+            <div class="mobile-cart-count" id="mobileCartCount" style="display:none;"></div>
+        </div>
+        <div class="mobile-nav-item" id="mob-profile" onclick="switchTab('profile')">
+            <i class="fa-regular fa-circle-user"></i>
+            <span>Profile</span>
+        </div>
+    </div>
+</div>
+
+<!-- Mobile Sections -->
+<div id="mobile-search-section" style="display:none; padding: 80px 16px 16px;margin-top: 190px;">
+    <div class="mobile-search-bar">
+        <input type="text" id="mobileSearchInput" placeholder="Search for products...">
+        <button onclick="mobileSearch()"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </div>
+    <div id="mobile-search-results"></div>
+</div>
+
+<div class="overlay" id="overlay" onclick="toggleCart()"></div>
+
+    <body class="category-page"></body>
+    <div class="containers" id="navbar">
+        <nav class="navbar-first">
+            <li>vegetables</li>
+            <li>fruits</li>
+            <li>oral care</li>
+            <li>detergents</li>
+            <li>snacks</li>
+            <li>soft drinks</li>
+            <li>milk & dairy</li>
+        </nav><br>
+
+
+        <hr>
+        <section class="nav-bar">
+            <a href="/public/agri.html" target="_blank">
+                <p>Grow<span>Cart</span></p>
+            </a>
+            <form class="nav-searchbar" id="searching" action="/search" method="GET">
+                <input id="search" type="text" placeholder="search seeds,Pestisides,Organic" name="query">
+                <button type="button" id="searchBtn"><i class="fa fa-search fa-2xl"></i></button>
+                <div id="suggestions" class="suggestions"></div>
+            </form>
+
+            <nav id="cart-user-login">
+                <i id="cartCount" class="fa-solid fa-basket-shopping fa-2xl" onclick="toggleCart()"><span
+                        id="counting"></span></i>
+                <i class="fa-regular fa-circle-user fa-2xl" id="userIcon" onclick="handleUserIcon()"
+                    style="cursor:pointer;"></i>
+            </nav>
+        </section>
+        <hr>
+    </div>
+    <div id="cart-sidebar" class="cart-sidebar">
+                    <div class="cart-header">
+                        <h2>Your Cart</h2>
+                        <button class="closeCart" onclick="toggleCart()">✖</button>
+                    </div>
+                    <div id="cart-items"></div>
+                </div>
+
+    <section>
+    <div class="carousel">
+        <div class="corousel-brands" id="brandSlider">
+            <div class="brand" data-category="vegetables" onclick="goToCategory(this)">
+                <img src="https://images.unsplash.com/photo-1607305387299-a3d9611cd469?w=150" alt="vegetables">
+                <p>Vegetables</p>
+            </div>
+            <div class="brand" data-category="fruits" onclick="goToCategory(this)">
+                <img src="https://images.unsplash.com/photo-1619566636858-adf3ef46400b?w=150" alt="fruits">
+                <p>Fruits</p>
+            </div>
+            <div class="brand" data-category="dairy" onclick="goToCategory(this)">
+                <img src="https://images.unsplash.com/photo-1563636619-e9143da7973b?w=150" alt="dairy">
+                <p>Dairy</p>
+            </div>
+            <div class="brand" data-category="grocery" onclick="goToCategory(this)">
+                <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=150" alt="grocery">
+                <p>Grocery</p>
+            </div>
+            <div class="brand" data-category="detergents" onclick="goToCategory(this)">
+                <img src="https://images.unsplash.com/photo-1585421514738-01798e348b17?w=150" alt="detergents">
+                <p>Detergents</p>
+            </div>
+            <div class="brand" data-category="snacks" onclick="goToCategory(this)">
+                <img src="https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=150" alt="snacks">
+                <p>Snacks</p>
+            </div>
+            <div class="brand" data-category="beverages" onclick="goToCategory(this)">
+                <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?w=150" alt="beverages">
+                <p>Beverages</p>
+            </div>
+            <div class="brand" data-category="chocolates" onclick="goToCategory(this)">
+                <img src="https://images.unsplash.com/photo-1481391319762-47dff72954d9?w=150" alt="chocolates">
+                <p>Chocolates</p>
+            </div>
+            <div class="brand" data-category="oralcare" onclick="goToCategory(this)">
+                <img src="https://images.unsplash.com/photo-1559591935-c5c9fa0c1b38?w=150" alt="oralcare">
+                <p>Oral Care</p>
+            </div>
+            <div class="brand" data-category="vegetables" onclick="goToCategory(this)">
+                <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?w=150" alt="vegetables">
+                <p>Vegetables</p>
+            </div>
+            <div class="brand" data-category="fruits" onclick="goToCategory(this)">
+                <img src="https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=150" alt="fruits">
+                <p>Fruits</p>
+            </div>
+            <div class="brand" data-category="dairy" onclick="goToCategory(this)">
+                <img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?w=150" alt="dairy">
+                <p>Dairy</p>
+            </div>
+            <div class="brand" data-category="snacks" onclick="goToCategory(this)">
+                <img src="https://images.unsplash.com/photo-1585647347483-22b66260dfff?w=150" alt="snacks">
+                <p>Snacks</p>
+            </div>
+            <div class="brand" data-category="beverages" onclick="goToCategory(this)">
+                <img src="https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=150" alt="beverages">
+                <p>Beverages</p>
+            </div>
+            <div class="brand" data-category="grocery" onclick="goToCategory(this)">
+                <img src="https://images.unsplash.com/photo-1506617420156-8e4536971650?w=150" alt="grocery">
+                <p>Grocery</p>
+            </div>
+            <div class="brand" data-category="chocolates" onclick="goToCategory(this)">
+                <img src="https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=150" alt="chocolates">
+                <p>Chocolates</p>
+            </div>
+            <div class="brand" data-category="detergents" onclick="goToCategory(this)">
+                <img src="https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=150" alt="detergents">
+                <p>Detergents</p>
+            </div>
+            <div class="brand" data-category="oralcare" onclick="goToCategory(this)">
+                <img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=150" alt="oralcare">
+                <p>Oral Care</p>
+            </div>
+        </div>
+        <div class="prev">&#10094;</div>
+        <div class="next">&#10095;</div>
+    </div>
+</section>
+
+    <section class="ad">
+        <div class="ad1">
+            <p id="ad101">Delivered in 10 minutes</p>
+            <p>Fresh groceries at your door</p>
+            <button>Order Now</button>
+        </div>
+        <div class="ad2">
+            <p id="ad2-1">Get upto 50% off today</p>
+            <p>Use code: FIRST50 at checkout</p>
+            <button>Get It</button>
+        </div>
+    </section>
+
+    <div id="App">
+        <section>
+            <div class="pestisides-product">
+                <h2>🥦 Vegetables</h2>
+                <p class="see-more">see more ></p>
+                <div class="product-containerP1" id="vegetables-container"></div>
+            </div>
+        </section>
+
+        <section>
+            <div class="pestisides-product">
+                <h2>🍎 Fruits</h2>
+                <p class="see-more">see more ></p>
+                <div class="product-containerP1" id="fruits-container"></div>
+            </div>
+        </section>
+
+        <section>
+            <div class="pestisides-product">
+                <h2>🥛 Milk & Dairy</h2>
+                <p class="see-more">see more ></p>
+                <div class="product-containerP1" id="dairy-container"></div>
+            </div>
+        </section>
+
+        <section>
+            <div class="pestisides-product">
+                <h2>🛒 Grocery</h2>
+                <p class="see-more">see more ></p>
+                <div class="product-containerP1" id="grocery-container"></div>
+            </div>
+        </section>
+
+        <section>
+            <div class="pestisides-product">
+                <h2>🧴 Detergents</h2>
+                <p class="see-more">see more ></p>
+                <div class="product-containerP1" id="detergents-container"></div>
+            </div>
+        </section>
+
+        <section>
+            <div class="pestisides-product">
+                <h2>🍿 Snacks</h2>
+                <p class="see-more">see more ></p>
+                <div class="product-containerP1" id="snacks-container"></div>
+            </div>
+        </section>
+
+        <section>
+            <div class="pestisides-product">
+                <h2>🥤 Beverages</h2>
+                <p class="see-more">see more ></p>
+                <div class="product-containerP1" id="beverages-container"></div>
+            </div>
+        </section>
+    </div>
+
+    <button id="view-more-categories" class="view-more-btn" style="display: none;">
+        View More Categories
+    </button>
+
+  <section class="promise-section">
+    <div class="promise-strip">
+        <div class="promise-item">
+            <span class="promise-icon">⚡</span>
+            <div>
+                <h4>10 Minute Delivery</h4>
+                <p>Fresh groceries at your door</p>
+            </div>
+        </div>
+        <div class="promise-divider"></div>
+        <div class="promise-item">
+            <span class="promise-icon">🌿</span>
+            <div>
+                <h4>Farm Fresh Quality</h4>
+                <p>Sourced directly from farmers</p>
+            </div>
+        </div>
+        <div class="promise-divider"></div>
+        <div class="promise-item">
+            <span class="promise-icon">🛡️</span>
+            <div>
+                <h4>100% Safe & Hygienic</h4>
+                <p>Quality checked every order</p>
+            </div>
+        </div>
+        <div class="promise-divider"></div>
+        <div class="promise-item">
+            <span class="promise-icon">💸</span>
+            <div>
+                <h4>Best Prices</h4>
+                <p>No hidden charges ever</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section class="footer-about">
+        <div class="footer-section">
+            <div>
+                <img src="imageshop/agrologo.png" srcset="" alt="">
+
+            </div>
+            <div class="footer-about1">
+                <h4>About Us</h4>
+                <p>Careers</p>
+                <p>Press Releases</p>
+                <p>Blog</p>
+            </div>
+            <div class="footer-about2">
+                <h4>Help Center</h4>
+                <p>Contact Us</p>
+                <p>Report Abuse</p>
+                <p>FAQs</p>
+            </div>
+            <div class="footer-about3">
+                <h4>Policies</h4>
+                <p>Terms of Use</p>
+                <p>Privacy Policy</p>
+                <p>Sitemap</p>
+            </div>
+            <div class="footer-about4">
+                <h4>Socials</h4>
+                <i class="fa-brands fa-facebook fa-2xl" style="color:blue;"></i>
+                <i class="fa-brands fa-twitter fa-2xl" style="color: black;"></i>
+                <i class="fa-brands fa-instagram fa-2xl"></i>
+                <i class="fa-brands fa-linkedin fa-2xl"></i>
+            </div>
+        </div>
+    </section>
+
+    <hr>
+
+    <section class="footer-end-section">
+        <div class="footer-end">
+            <p>© 2025 AgroFarm. All rights reserved.</p>
+            <p>made with 💚 by phaniraj</p>
+        </div>
+        <div class="back-to-top">
+            <a href="" target="_top"><button>⇧</button></a>
+        </div>
+    </section>
+
+
+    <div id="previewModal" class="preview-modal">
+        <div class="preview-content">
+            <button class="close-btn">&times;</button>
+
+            <!-- Left: Image carousel -->
+            <div class="preview-left">
+                <div class="preview-carousel">
+                    <img id="previewImage" src="" alt="">
+                    <button class="carousel-prev">&#10094;</button>
+                    <button class="carousel-next">&#10095;</button>
+                </div>
+                <div class="preview-thumbnails" id="previewThumbnails"></div>
+            </div>
+
+            <!-- Right: Details -->
+            <div class="preview-right">
+                <p class="preview-category" id="previewCategory"></p>
+                <h2 id="previewTitle"></h2>
+                <div class="preview-price-row">
+                    <span class="preview-price" id="previewPrice"></span>
+                </div>
+                <p class="preview-desc" id="previewDesc"></p>
+                <select class="preview-select">
+                    <option value="1L">1L</option>
+                    <option value="500ml">500ml</option>
+                    <option value="250ml">250ml</option>
+                </select>
+                <div class="preview-actions">
+                    <button class="preview-add-btn" id="previewAddBtn">Add to Cart</button>
+                </div>
+
+
+                <!-- Ratings Section -->
+                <div class="preview-ratings">
+                    <div class="rating-summary">
+                        <span class="big-rating" id="previewAvgRating">0.0</span>
+                        <div class="rating-stars" id="previewStars"></div>
+                        <span class="rating-count" id="previewRatingCount">(0 reviews)</span>
+                    </div>
+
+                    <div class="rate-section">
+                        <p>Rate this product:</p>
+                        <div class="star-input" id="starInput">
+                            <span class="star-pick" data-value="1">★</span>
+                            <span class="star-pick" data-value="2">★</span>
+                            <span class="star-pick" data-value="3">★</span>
+                            <span class="star-pick" data-value="4">★</span>
+                            <span class="star-pick" data-value="5">★</span>
+                        </div>
+                        <button class="submit-rating-btn" id="submitRatingBtn">Submit Rating</button>
+                    </div>
+
+                    <div class="reviews-list" id="reviewsList"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="/js/cart.js"></script>
+    <script src="/js/nav.js"></script>
+    <script src="/products/search.js"></script>
+    <script src="/products/carousel.js"></script>
+    <script src="/products/searchSuggest.js"></script>
+    <script src="/products/checkout.js"></script>
+    <script src="/products/address.js"></script>
+    <script src="/products/payment.js"></script>
+    <script src="/js/checkoutModal.js"></script>
+    <script src="/js/paymentsredirect.js"></script>
+    <script src="/js/products.js" defer></script>
+</body>
+
+</html>

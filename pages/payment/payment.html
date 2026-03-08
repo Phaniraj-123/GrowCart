@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - AgroFarm</title>
+    <link rel="stylesheet" href="/css/payment.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script
+        src="https://www.paypal.com/sdk/js?client-id=Abx3ofgrr5W2LbVuVNvYlWu9luKIvnzbwIgXAI_jaekASoox9W0whdE37Q-Z3ECBTwMRlStkvFFYQwTh&currency=USD"></script>
+</head>
+
+<body>
+
+    <div class="payment-container">
+
+        <div class="payment-header">
+            <a href="/pages/home/content.html" class="back-btn">
+                <i class="fa-solid fa-arrow-left"></i>
+            </a>
+            <h2>Payment</h2>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="section">
+            <h3>Order Summary</h3>
+            <div id="order-summary"></div>
+        </div>
+
+        <!-- Delivery Address -->
+        <div class="section">
+            <h3>Delivering To</h3>
+            <div id="delivery-address"></div>
+        </div>
+
+        <!-- Payment Methods -->
+        <div class="section">
+            <h3>Payment Method</h3>
+            <div id="paypal-button-container"></div>
+        
+
+        <div style="display:flex; align-items:center; gap:12px; margin:16px 0;">
+            <div style="flex:1; height:1px; background:#ede7d9;"></div>
+            <span style="font-size:0.75rem; color:#6b7c74; letter-spacing:0.1em;">OR</span>
+            <div style="flex:1; height:1px; background:#ede7d9;"></div>
+        </div>
+
+        <button class="confirm-btn" onclick="confirmCOD()">
+            <i class="fa-solid fa-money-bill-wave" style="margin-right:8px;"></i>
+            Cash on Delivery
+        </button>
+
+        </div>
+
+        
+
+        
+    </div>
+
+    <div id="toast"></div>
+    <script src="/js/paymentsredirect.js"></script>
+</body>
+
+</html>

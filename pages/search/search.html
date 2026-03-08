@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results - AgroFarm</title>
+    <link rel="stylesheet" href="/css/content.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<!-- search.html -->
+<body class="search-page">
+<body>
+    <div id="navbar">
+         <div class="containers" id="navbar">
+        <nav class="navbar-first">
+            <li>Herbs</li>
+            <li>Seeds</li>
+            <li>Pestisides</li>
+            <li>Organic</li>
+            <li>Equipment</li>
+            <li>Crop Nutritients</li>
+            <li>Crop protection</li>
+        </nav><br>
+
+
+        <hr>
+        <section class="nav-bar">
+            <a href="/public/agri.html" target="_blank">
+                <p>Agro<span>Farm</span></p>
+            </a>
+            <form class="nav-searchbar" id="searching" action="/search" method="GET">
+                <input id="search" type="text" placeholder="search seeds,Pestisides,Organic" name="query">
+                <button type="button" id="searchBtn"><i class="fa fa-search fa-2xl"></i></button>
+                <div id="suggestions" class="suggestions"></div>
+            </form>
+
+            <nav id="cart-user-login">
+                <i id="cartCount" class="fa-solid fa-basket-shopping fa-2xl" onclick="toggleCart()"><span id="counting"></span></i>
+                <i class="fa-regular fa-circle-user fa-2xl" id="userIcon" onclick="handleUserIcon()" style="cursor:pointer;"></i>
+
+
+                <div id="cart-sidebar" class="cart-sidebar">
+                    <div class="cart-header">
+                        <h2>Your Cart</h2>
+                        <button class="closeCart"  onclick="toggleCart()">✖</button>
+                    </div>
+                    <div id="cart-items"></div>
+                </div>
+            </nav>
+        </section>
+        <hr>
+    </div>
+
+    </div>
+
+    <div style="padding: 20px;margin-top: 190px;z-index: 1;">
+        <h2 id="search-heading" style="color:#0d3d2b; margin-bottom: 20px;"></h2>
+        <div class="product-containerP1" id="search-results"></div>
+    </div>
+
+    <script src="/js/searchResults.js"></script>
+    <script src="../products/searchSuggest.js"></script>
+    <script src="/js/cart.js"></script>
+    <script src="/js/nav.js"></script>
+    <script src="/products/searchSuggest.js"></script>
+    <script src="/products/search.js"></script>
+    <script src="/products/checkout.js"></script>
+    <script src="../js/checkoutModal.js"></script>
+    <script src="/js/paymentsredirect.js"></script>
+     <script src="/products/cartbtn.js"></script>
+      <script src="/products/address.js"></script>
+</body>
+</html>

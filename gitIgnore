@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Environment
+.env
+Backend/.env
+
+# Database
+agrodatabase.sql
+
+# Sensitive pages
+pages/
+products/
+css/
+
+# Config files
+Backend/config/
+Backend/middleware/
+Backend/routes/

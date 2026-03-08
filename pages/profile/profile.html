@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile</title>
+    <link rel="stylesheet" href="/css/profile.css">
+</head>
+<body>
+
+    <div class="profile-container">
+
+        <div class="profile-header">
+            <i class="fa-regular fa-circle-user fa-4x"></i>
+            <h2 id="profile-name">Loading...</h2>
+            <p id="profile-email"></p>
+        </div>
+
+        <div class="profile-menu">
+
+            <div class="menu-item" onclick="showSection('orders')">
+                <i class="fa-solid fa-box"></i>
+                <span>My Orders</span>
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
+
+            <div class="menu-item" onclick="showSection('details')">
+                <i class="fa-solid fa-user"></i>
+                <span>Personal Details</span>
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
+
+            <div class="menu-item" onclick="showSection('address')">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>My Address</span>
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
+
+            <div class="menu-item" onclick="showSection('support')">
+                <i class="fa-solid fa-headset"></i>
+                <span>Customer Support</span>
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
+
+            <div class="menu-item logout" onclick="logout()">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Logout</span>
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
+
+        </div>
+
+        <!-- Sections -->
+        <div id="orders" class="section" style="display:none;">
+            <h3>My Orders</h3>
+            <div id="orders-list">Loading...</div>
+        </div>
+
+        <div id="details" class="section" style="display:none;">
+            <h3>Personal Details</h3>
+            <p><b>Name:</b> <span id="detail-name"></span></p>
+            <p><b>Email:</b> <span id="detail-email"></span></p>
+            <p><b>Mobile:</b> <span id="detail-mobile"></span></p>
+        </div>
+
+        <div id="address" class="section" style="display:none;"></div>
+
+        <div id="support" class="section" style="display:none;">
+            <h3>Customer Support</h3>
+            <p>Email us at: <a href="mailto:support@agrofarm.com">support@agrofarm.com</a></p>
+            <p>Call us: +91 98765 43210</p>
+        </div>
+
+    </div>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="/js/profile.js"></script>
+</body>
+</html>
