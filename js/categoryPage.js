@@ -8,7 +8,7 @@ document.title = `${category} — AgroFarm`;
 
 async function loadCategory() {
     try {
-        const res = await fetch('http://localhost:5000/api/products');
+        const res = await fetch('https://growcart.onrender.com/api/products');
         const products = await res.json();
 
         const filtered = products.filter(p => p.category === category);

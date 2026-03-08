@@ -1,6 +1,4 @@
-CREATE DATABASE shopdb;
 
-USE shopdb;
 
 CREATE TABLE users (
   id INT AUTO_INCREMENT PRIMARY KEY,
