@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../config/db');
-const protect = require('../middleware/authMiddleware');
+const protect = require('../middleware/authmiddleware');
 
 // SAVE ADDRESS (protected)
 router.post('/', protect, async (req, res) => {
