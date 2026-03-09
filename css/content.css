@@ -5,6 +5,7 @@
 
 html {
     font-family: poppins, sans-serif;
+    scroll-behavior: smooth;
 }
 
 body {
