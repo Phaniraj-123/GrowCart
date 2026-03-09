@@ -16,7 +16,7 @@ async function login() {
             localStorage.setItem('user', JSON.stringify(data.user));
 
             if (data.user.is_admin) {
-                window.location.href = '/pages/admin/dashboard.html';
+                window.location.href = '/dashboard.html';
             } else {
                 window.location.href = '/pages/home/content.html';
             }
