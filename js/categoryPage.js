@@ -4,7 +4,7 @@ const category = params.get('cat') || '';
 // Set page title
 document.getElementById('category-title').textContent = 
     category.charAt(0).toUpperCase() + category.slice(1);
-document.title = `${category} — AgroFarm`;
+document.title = `${category} — GrowCart`;
 
 async function loadCategory() {
     try {

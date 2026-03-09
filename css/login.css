@@ -80,7 +80,7 @@ body::after {
 
 /* Brand label */
 .Login::after {
-    content: 'AGROFARM';
+    content: 'GROWCART';
     position: absolute;
     top: 28px; right: 28px;
     font-size: 0.6rem;
