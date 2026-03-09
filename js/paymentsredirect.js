@@ -113,12 +113,12 @@ async function confirmOrder() {
 }
 
 // Toast
-// function showToast(message) {
-//     const toast = document.getElementById('toast');
-//     toast.textContent = message;
-//     toast.style.opacity = '1';
-//     setTimeout(() => toast.style.opacity = '0', 2500);
-// }
+function showToast(message) {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.style.opacity = '1';
+    setTimeout(() => toast.style.opacity = '0', 2500);
+}
 
 loadSummary();
 loadAddress();
