@@ -62,7 +62,7 @@ searchBtn.addEventListener("click", () => {
 
     if (!value) return;
     else {
-        window.location.href = `/shopping/search.html?q=${encodeURIComponent(value)}`;
+        window.location.href = `/pages/search/search.html?q=${encodeURIComponent(value)}`;
     }
 });
 
