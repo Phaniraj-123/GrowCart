@@ -7,6 +7,7 @@ Backend/.env
 
 # Database
 agrodatabase.sql
+clean_database.sql
 
 # Sensitive pages
 pages/
