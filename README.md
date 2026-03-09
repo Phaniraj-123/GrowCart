@@ -44,13 +44,18 @@ GrowCart is a ready-to-launch e-commerce platform designed for grocery stores, f
 )
 
 ### 🛒 Product Catalog
-![Product Catalog](./screenshots/catalog.png)
+![Product Catalog](<img width="1920" height="1020" alt="Screenshot 2026-03-09 185221" src="https://github.com/user-attachments/assets/77bffada-1bc6-4980-80b3-a8ef4242ca8b" />
+)
+(<img width="1920" height="1020" alt="Screenshot 2026-03-09 185241" src="https://github.com/user-attachments/assets/4a9039ff-f830-4692-abe2-bbd48ab68167" />
+)
 
 ### 🧺 Shopping Cart
-![Shopping Cart](./screenshots/cart.png)
+![Shopping Cart](<img width="1920" height="1020" alt="Screenshot 2026-03-09 185333" src="https://github.com/user-attachments/assets/9f536918-2487-46ef-9ebb-ab1c4237a534" />
+)
 
 ### 🖥️ Admin Dashboard
-![Admin Dashboard](./screenshots/admin.png)
+![Admin Dashboard](<img width="1920" height="1020" alt="Screenshot 2026-03-09 185526" src="https://github.com/user-attachments/assets/65b26ee2-38ba-49b6-b798-f58d2b2b15e0" />
+)
 
 ### 📦 Order Tracking
 ![Order Tracking](./screenshots/orders.png)
