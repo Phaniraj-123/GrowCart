@@ -1,1 +1,7 @@
-/ /pages/home/content.html 301
+/home /pages/home/content.html 200
+/login /pages/auth/login.html 200
+/signup /pages/auth/signup.html 200
+/categories /pages/category/category.html 200
+/payment /pages/payment/payment.html 200
+/profile /pages/profile/profile.html 200
+/search /pages/search/search.html 200
