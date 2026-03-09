@@ -43,7 +43,7 @@ function handleUserIcon() {
 
 function goToCategory(el) {
     const category = el.dataset.category;
-    window.location.href = `../category/category.html?cat=${category}`;
+    window.location.href = `/category?cat=${category}`;
 }
 
 // footer navigation
