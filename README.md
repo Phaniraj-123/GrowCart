@@ -40,7 +40,8 @@ GrowCart is a ready-to-launch e-commerce platform designed for grocery stores, f
 ## 📸 Screenshots
 
 ### 🏠 Home Page
-![Home Page](./screenshots/home.png)
+![Home Page](.<img width="1920" height="1020" alt="Screenshot 2026-03-09 185148" src="https://github.com/user-attachments/assets/e487c9c3-02c4-4132-bb70-f9c46b602675" />
+)
 
 ### 🛒 Product Catalog
 ![Product Catalog](./screenshots/catalog.png)
