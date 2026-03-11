@@ -3,7 +3,7 @@ async function login() {
     const password = document.getElementById('password').value;
 
     try {
-        const response = await fetch('https://growcart.onrender.com/api/auth/login', {
+        const response = await fetch('http://localhost:5000/api/auth/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password })
@@ -16,7 +16,7 @@ async function login() {
             localStorage.setItem('user', JSON.stringify(data.user));
 
             if (data.user.is_admin) {
-                window.location.href = '/dashboard.html';
+                window.location.href = '/pages/admin/dashboard.html';
             } else {
                 window.location.href = '/pages/home/content.html';
             }

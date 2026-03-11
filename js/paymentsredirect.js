@@ -68,7 +68,7 @@ async function confirmOrder() {
     }));
 
     try {
-        const orderRes = await fetch('https://growcart.onrender.com/api/orders', {
+        const orderRes = await fetch('http://localhost:5000/api/orders', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -83,7 +83,7 @@ async function confirmOrder() {
             return;
         }
 
-        const paymentRes = await fetch('https://growcart.onrender.com/api/payments', {
+        const paymentRes = await fetch('http://localhost:5000/api/payments', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -132,7 +132,7 @@ function getTotal() {
 // Render PayPal button
 paypal.Buttons({
     createOrder: async function() {
-        const res = await fetch('https://growcart.onrender.com/api/paypal/create-order', {
+        const res = await fetch('http://localhost:5000/api/paypal/create-order', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -146,7 +146,7 @@ paypal.Buttons({
 
     onApprove: async function(data) {
         // Capture payment
-        const captureRes = await fetch('https://growcart.onrender.com/api/paypal/capture-order', {
+        const captureRes = await fetch('http://localhost:5000/api/paypal/capture-order', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -164,7 +164,7 @@ paypal.Buttons({
                 quantity: item.quantity
             }));
 
-            const orderRes = await fetch('https://growcart.onrender.com/api/orders', {
+            const orderRes = await fetch('http://localhost:5000/api/orders', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -176,7 +176,7 @@ paypal.Buttons({
             const orderData = await orderRes.json();
 
             // Record payment
-            await fetch('https://growcart.onrender.com/api/payments', {
+            await fetch('http://localhost:5000/api/payments', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -209,7 +209,7 @@ async function confirmCOD() {
     }));
 
     try {
-        const orderRes = await fetch('https://growcart.onrender.com/api/orders', {
+        const orderRes = await fetch('http://localhost:5000/api/orders', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -224,7 +224,7 @@ async function confirmCOD() {
             return;
         }
 
-        await fetch('https://growcart.onrender.com/api/payments', {
+        await fetch('http://localhost:5000/api/payments', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

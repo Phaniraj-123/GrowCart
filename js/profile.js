@@ -25,7 +25,7 @@ function showSection(id) {
 // Load orders
 async function loadOrders() {
     try {
-        const response = await fetch('https://growcart.onrender.com/api/orders/myorders', {
+        const response = await fetch('http://localhost:5000/api/orders/myorders', {
             headers: { 'Authorization': `Bearer ${token}` }
         });
         const orders = await response.json();
@@ -69,7 +69,7 @@ function logout() {
 // Load address
 async function loadAddress() {
     try {
-        const res = await fetch('https://growcart.onrender.com/api/addresses', {
+        const res = await fetch('http://localhost:5000/api/addresses', {
             headers: { 'Authorization': `Bearer ${token}` }
         });
         const addresses = await res.json();
@@ -137,7 +137,7 @@ async function saveAddress() {
     }
 
     try {
-        const res = await fetch('https://growcart.onrender.com/api/addresses', {
+        const res = await fetch('http://localhost:5000/api/addresses', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -161,7 +161,7 @@ async function saveAddress() {
 // Delete address
 async function deleteAddress(id) {
     try {
-        await fetch(`https://growcart.onrender.com/api/addresses/${id}`, {
+        await fetch(`http://localhost:5000/api/addresses/${id}`, {
             method: 'DELETE',
             headers: { 'Authorization': `Bearer ${token}` }
         });
@@ -175,7 +175,7 @@ async function cancelOrder(id) {
     if (!confirm('Are you sure you want to cancel this order?')) return;
 
     try {
-        const res = await fetch(`https://growcart.onrender.com/api/orders/cancel/${id}`, {
+        const res = await fetch(`http://localhost:5000/api/orders/cancel/${id}`, {
             method: 'PUT',
             headers: { 'Authorization': `Bearer ${token}` }
         });

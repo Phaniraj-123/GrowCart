@@ -28,7 +28,7 @@ async function loadCheckoutAddress() {
     const section = document.getElementById('saved-address-section');
 
     try {
-        const res = await fetch('https://growcart.onrender.com/api/addresses', {
+        const res = await fetch('http://localhost:5000/api/addresses', {
             headers: { 'Authorization': `Bearer ${token}` }
         });
         const addresses = await res.json();
@@ -88,7 +88,7 @@ async function confirmAddress() {
 
         // Save new address
         const token = localStorage.getItem('token');
-        await fetch('https://growcart.onrender.com/api/addresses', {
+        await fetch('http://localhost:5000/api/addresses', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -137,7 +137,7 @@ async function confirmOrder() {
 
     try {
         // Place order
-        const orderRes = await fetch('https://growcart.onrender.com/api/orders', {
+        const orderRes = await fetch('http://localhost:5000/api/orders', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -153,7 +153,7 @@ async function confirmOrder() {
         }
 
         // Make payment
-        const paymentRes = await fetch('https://growcart.onrender.com/api/payments', {
+        const paymentRes = await fetch('http://localhost:5000/api/payments', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

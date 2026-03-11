@@ -7,7 +7,7 @@ let allProducts = [];
 // Fetch all products from DB once
 async function fetchProducts() {
     try {
-        const res = await fetch('https://growcart.onrender.com/api/products');
+        const res = await fetch('http://localhost:5000/api/products');
         allProducts = await res.json();
     } catch (err) {
         console.error('Failed to fetch products:', err);

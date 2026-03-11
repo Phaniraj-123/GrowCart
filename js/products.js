@@ -1,6 +1,6 @@
 async function loadProducts() {
     try {
-        const response = await fetch('https://growcart.onrender.com/api/products');
+        const response = await fetch('http://localhost:5000/api/products');
         const products = await response.json();
 
         const vegetables = products.filter(p => p.category === 'vegetables');

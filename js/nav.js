@@ -178,7 +178,7 @@ if (previewModal) {
 // After setting modal content, load ratings
 async function loadRatings(productId) {
     try {
-        const res = await fetch(`https://growcart.onrender.com/api/reviews/${productId}`);
+        const res = await fetch(`http://localhost:5000/api/reviews/${productId}`);
         const data = await res.json();
 
         // Update avg rating
@@ -241,7 +241,7 @@ document.getElementById('submitRatingBtn').addEventListener('click', async funct
     const productId = currentPreviewCard.dataset.id;
 
     try {
-        const res = await fetch('https://growcart.onrender.com/api/reviews', {
+        const res = await fetch('http://localhost:5000/api/reviews', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
