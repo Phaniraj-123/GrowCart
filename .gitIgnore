@@ -1,5 +1,8 @@
 # Dependencies
 node_modules/
+package-lock.json
+package.json
+products.json
 
 # Environment
 .env
