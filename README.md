@@ -160,7 +160,6 @@ App will be live at `http://localhost:3000`
 
 ## 👨‍💻 Author
 
-**Your Name**
 - GitHub: [@yourusername](https://github.com/Phaniraj-123)
 - LinkedIn: [yourname](https://linkedin.com/in/phanirajbn)
 
