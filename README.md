@@ -40,22 +40,22 @@ GrowCart is a ready-to-launch e-commerce platform designed for grocery stores, f
 ## 📸 Screenshots
 
 ### 🏠 Home Page
-![Home Page](.<img width="1920" height="1020" alt="Screenshot 2026-03-09 185148" src="https://github.com/user-attachments/assets/e487c9c3-02c4-4132-bb70-f9c46b602675" />
+![Home Page](.<img width="1200" height="700" alt="Screenshot 2026-03-09 185148" src="https://github.com/user-attachments/assets/e487c9c3-02c4-4132-bb70-f9c46b602675" />
 )
 
 ### 🛒 Product Catalog
-![Product Catalog](<img width="1920" height="1020" alt="Screenshot 2026-03-09 185221" src="https://github.com/user-attachments/assets/77bffada-1bc6-4980-80b3-a8ef4242ca8b" />
-)
-(<img width="1920" height="1020" alt="Screenshot 2026-03-09 185241" src="https://github.com/user-attachments/assets/4a9039ff-f830-4692-abe2-bbd48ab68167" />
-)
+![Product Catalog]<img width="1920" height="1020" alt="Screenshot 2026-03-09 185221" src="https://github.com/user-attachments/assets/77bffada-1bc6-4980-80b3-a8ef4242ca8b" />
+
+<img width="1920" height="1020" alt="Screenshot 2026-03-09 185241" src="https://github.com/user-attachments/assets/4a9039ff-f830-4692-abe2-bbd48ab68167" />
+
 
 ### 🧺 Shopping Cart
-![Shopping Cart](<img width="1920" height="1020" alt="Screenshot 2026-03-09 185333" src="https://github.com/user-attachments/assets/9f536918-2487-46ef-9ebb-ab1c4237a534" />
-)
+![Shopping Cart]<img width="1920" height="1020" alt="Screenshot 2026-03-09 185333" src="https://github.com/user-attachments/assets/9f536918-2487-46ef-9ebb-ab1c4237a534" />
+
 
 ### 🖥️ Admin Dashboard
-![Admin Dashboard](<img width="1920" height="1020" alt="Screenshot 2026-03-09 185526" src="https://github.com/user-attachments/assets/65b26ee2-38ba-49b6-b798-f58d2b2b15e0" />
-)
+![Admin Dashboard]<img width="1920" height="1020" alt="Screenshot 2026-03-09 185526" src="https://github.com/user-attachments/assets/65b26ee2-38ba-49b6-b798-f58d2b2b15e0" />
+
 
 ### 📦 Order Tracking
 ![Order Tracking](./screenshots/orders.png)
